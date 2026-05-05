@@ -1,11 +1,21 @@
 import { API } from "./axiosInstance";
 
-export const getUserCart = (userId) => API.get(`/carts/user/${userId}`);
-
-export const addToCart = (cartData) => {
-  API.post("/carts", cartData);
+export const getUserCart = async (userId) => {
+  const response = await API.get(`/carts/user/${userId}`);
+  return response.data;
 };
 
-export const updateCart = (id, cartData) => API.put(`/carts/${id}`, cartData);
+export const addToCart = async (cartData) => {
+  const response = await API.post("/carts", cartData);
+  return response.data;
+};
 
-export const deleteCart = (id) => API.delete(`/carts/${id}`);
+export const updateCart = async (id, cartData) => {
+  const response = await API.put(`/carts/${id}`, cartData);
+  return response.data;
+};
+
+export const deleteCart = async (id) => {
+  const response = await API.delete(`/carts/${id}`);
+  return response.data;
+};
