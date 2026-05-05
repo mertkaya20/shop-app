@@ -20,14 +20,15 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route
+          {/* <Route
             path="/cart"
             element={
               <ProtectedRoute>
                 <Cart />
               </ProtectedRoute>
             }
-          />
+          /> */}
+          <Route path="/cart" element={<Cart />} />
           <Route
             path="/checkout"
             element={
