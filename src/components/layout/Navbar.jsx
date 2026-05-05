@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => setMenuOpen((prev) => !prev);
@@ -58,7 +60,7 @@ const Navbar = () => {
               <path d="M16 10a4 4 0 0 1-8 0" />
             </svg>
             <span className="absolute -top-2 -right-2 bg-amber-600 text-white text-[10px] font-medium w-4.5 h-4.5 rounded-full flex items-center justify-center">
-              0
+              {totalQuantity}
             </span>
           </Link>
 
