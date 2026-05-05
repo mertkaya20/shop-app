@@ -1,9 +1,13 @@
 import { ShoppingCart } from "lucide-react";
 import Button from "../ui/Button";
+import { Link } from "react-router-dom";
 
 export default function ProductCard({ product }) {
   return (
-    <div className="group bg-white rounded-2xl overflow-hidden border border-zinc-100 hover:border-amber-300 hover:shadow-lg transition-all duration-300 flex flex-col">
+    <Link
+      to={`/detail/${product.id}`}
+      className="group bg-white rounded-2xl overflow-hidden border border-zinc-100 hover:border-amber-300 hover:shadow-lg transition-all duration-300 flex flex-col"
+    >
       {/* Image */}
       <div className="relative overflow-hidden bg-zinc-50 h-44 sm:h-52 flex items-center justify-center p-4">
         <img
@@ -44,6 +48,6 @@ export default function ProductCard({ product }) {
           </Button>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
