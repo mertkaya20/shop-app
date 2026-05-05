@@ -1,0 +1,19 @@
+const sizes = {
+  sm: "w-4 h-4 border-2",
+  md: "w-7 h-7 border-2",
+  lg: "w-10 h-10 border-[3px]",
+};
+
+const Spinner = ({ size = "md", className = "" }) => {
+  return (
+    <div
+      className={`
+        rounded-full border-zinc-200 border-t-amber-400 animate-spin
+        ${sizes[size]}
+        ${className}
+      `}
+    />
+  );
+};
+
+export default Spinner;
