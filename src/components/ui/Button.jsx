@@ -30,7 +30,7 @@ const Button = ({
       className={`
         inline-flex items-center justify-center font-semibold rounded-lg
         transition-colors duration-200 tracking-wide
-        disabled:opacity-40 disabled:cursor-not-allowed
+        disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer
         ${variants[variant]}
         ${sizes[size]}
         ${className}
