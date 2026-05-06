@@ -15,7 +15,7 @@ export default function CartItem({ item }) {
     <div className="bg-white rounded-2xl border border-zinc-100 p-4 flex gap-4 items-center">
       {/* Image */}
       <div
-        onClick={() => navigate(`/product/${item.id}`)}
+        onClick={() => navigate(`/detail/${item.id}`)}
         className="w-20 h-20 shrink-0 bg-[#F5F5F0] rounded-xl flex items-center justify-center cursor-pointer hover:opacity-80 transition-opacity"
       >
         <img
@@ -31,7 +31,7 @@ export default function CartItem({ item }) {
           {item.category}
         </span>
         <p
-          onClick={() => navigate(`/product/${item.id}`)}
+          onClick={() => navigate(`/detail/${item.id}`)}
           className="text-sm font-semibold text-zinc-800 line-clamp-1 cursor-pointer hover:text-amber-500 transition-colors"
         >
           {item.title}
@@ -47,7 +47,7 @@ export default function CartItem({ item }) {
           onClick={() => dispatch(removeFromCart({ id: item.id }))}
           className="text-zinc-300 hover:text-red-500 transition-colors"
         >
-          <Trash2 size={15} />
+          <Trash2 size={15} className="cursor-pointer" />
         </button>
         <div className="flex items-center">
           <button
@@ -58,18 +58,18 @@ export default function CartItem({ item }) {
                 dispatch(decreaseQuantity({ id: item.id }));
               }
             }}
-            className="w-8 h-8 rounded-l-lg border border-zinc-200 bg-zinc-50 flex items-center justify-center text-zinc-600 hover:bg-zinc-100 transition-colors"
+            className="w-8 h-8 rounded-l-lg border border-zinc-200 bg-zinc-50 flex items-center justify-center text-zinc-600 hover:bg-zinc-100 transition-colors cursor-pointer"
           >
-            <Minus size={13} />
+            <Minus size={13} className="cursor-pointer" />
           </button>
           <div className="w-10 h-8 border-t border-b border-zinc-200 bg-white flex items-center justify-center text-sm font-semibold text-zinc-800">
             {item.quantity}
           </div>
           <button
             onClick={() => dispatch(increaseQuantity({ id: item.id }))}
-            className="w-8 h-8 rounded-r-lg border border-zinc-200 bg-zinc-50 flex items-center justify-center text-zinc-600 hover:bg-zinc-100 transition-colors"
+            className="w-8 h-8 rounded-r-lg border border-zinc-200 bg-zinc-50 flex items-center justify-center text-zinc-600 hover:bg-zinc-100 transition-colors cursor-pointer"
           >
-            <Plus size={13} />
+            <Plus size={13} className="cursor-pointer" />
           </button>
         </div>
       </div>
