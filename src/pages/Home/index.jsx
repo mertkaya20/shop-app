@@ -66,7 +66,7 @@ export default function Home() {
               variant={activeCategory === cat ? "primary" : "secondary"}
               size="sm"
               onClick={() => setActiveCategory(cat)}
-              className="shrink-0 capitalize rounded-full"
+              className="shrink-0 capitalize rounded-full cursor-pointer"
             >
               {cat}
             </Button>
