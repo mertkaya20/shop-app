@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   ShoppingCart,
   Heart,
@@ -23,18 +23,28 @@ function ProductDetailContent() {
   const navigate = useNavigate();
 
   const { data: product, isLoading, isError } = useProductById(id);
-
+  const { token } = useSelector((state) => state.auth);
   const [quantity, setQuantity] = useState(1);
   const [isWished, setIsWished] = useState(false);
   const [added, setAdded] = useState(false);
 
   const handleAddToCart = () => {
-    for (let i = 0; i < quantity; i++) {
-      dispatch(addToCart(product));
+    if (token) {
+      for (let i = 0; i < quantity; i++) {
+        dispatch(addToCart(product));
+      }
+      dispatch(setNotification({ message: "Added to cart!", type: "success" }));
+      setAdded(true);
+      setTimeout(() => setAdded(false), 750);
+    } else {
+      dispatch(
+        setNotification({
+          message: "Please sign in to manage your cart",
+          type: "error",
+        }),
+      );
+      navigate("/login");
     }
-    dispatch(setNotification({ message: "Added to cart!", type: "success" }));
-    setAdded(true);
-    setTimeout(() => setAdded(false), 750);
   };
 
   const handleQuantityChange = (delta) => {
