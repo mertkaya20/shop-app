@@ -15,6 +15,7 @@ import { addToCart } from "../../store/slices/cartSlice";
 import Button from "../../components/ui/Button";
 import ErrorBoundary from "../../components/ui/ErrorBoundary";
 import Spinner from "../../components/ui/Spinner";
+import { setNotification } from "../../store/slices/uiSlice";
 
 function ProductDetailContent() {
   const { id } = useParams();
@@ -31,8 +32,9 @@ function ProductDetailContent() {
     for (let i = 0; i < quantity; i++) {
       dispatch(addToCart(product));
     }
+    dispatch(setNotification({ message: "Added to cart!", type: "success" }));
     setAdded(true);
-    setTimeout(() => setAdded(false), 2000);
+    setTimeout(() => setAdded(false), 750);
   };
 
   const handleQuantityChange = (delta) => {
@@ -85,7 +87,7 @@ function ProductDetailContent() {
         <div className="flex items-center gap-2 text-sm text-zinc-400">
           <button
             onClick={() => navigate("/")}
-            className="hover:text-zinc-700 transition-colors flex items-center gap-1"
+            className="hover:text-zinc-700 transition-colors flex items-center gap-1 cursor-pointer"
           >
             <ArrowLeft size={14} />
             Home
@@ -120,7 +122,9 @@ function ProductDetailContent() {
                 <Heart
                   size={16}
                   className={
-                    isWished ? "fill-red-500 text-red-500" : "text-zinc-400"
+                    isWished
+                      ? "fill-red-500 text-red-500"
+                      : "text-zinc-400 cursor-pointer"
                   }
                 />
               </button>
@@ -189,7 +193,7 @@ function ProductDetailContent() {
                 <button
                   onClick={() => handleQuantityChange(-1)}
                   disabled={quantity <= 1}
-                  className="w-10 h-10 rounded-l-lg border border-zinc-200 bg-white flex items-center justify-center text-zinc-600 hover:bg-zinc-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors font-medium"
+                  className="w-10 h-10 rounded-l-lg border border-zinc-200 bg-white flex items-center justify-center text-zinc-600 hover:bg-zinc-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors font-medium cursor-pointer"
                 >
                   −
                 </button>
@@ -198,7 +202,7 @@ function ProductDetailContent() {
                 </div>
                 <button
                   onClick={() => handleQuantityChange(1)}
-                  className="w-10 h-10 rounded-r-lg border border-zinc-200 bg-white flex items-center justify-center text-zinc-600 hover:bg-zinc-50 transition-colors font-medium"
+                  className="w-10 h-10 rounded-r-lg border border-zinc-200 bg-white flex items-center justify-center text-zinc-600 hover:bg-zinc-50 transition-colors font-medium cursor-pointer"
                 >
                   +
                 </button>
@@ -211,6 +215,7 @@ function ProductDetailContent() {
                 size="lg"
                 variant="primary"
                 className="flex-1"
+                disabled={added}
                 onClick={handleAddToCart}
               >
                 <ShoppingCart size={17} />
@@ -227,7 +232,9 @@ function ProductDetailContent() {
                 <Heart
                   size={18}
                   className={
-                    isWished ? "fill-red-500 text-red-500" : "text-zinc-400"
+                    isWished
+                      ? "fill-red-500 text-red-500"
+                      : "text-zinc-400 cursor-pointer"
                   }
                 />
               </button>
