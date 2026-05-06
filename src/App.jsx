@@ -14,10 +14,12 @@ import PublicRoute from "./components/layout/PublicRoute";
 import Notification from "./components/ui/Notification";
 import OrderSuccess from "./pages/OrderSuccess";
 import Profile from "./pages/Profile";
+import ScrollToTop from "./components/ui/ScrollToTop";
 
 const App = () => {
   return (
     <>
+      <ScrollToTop />
       <Navbar />
       <Notification />
       <main>
