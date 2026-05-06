@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
+import { useLogout } from "../../hooks/useAuth";
 
 const Navbar = () => {
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
+  const { token, user } = useSelector((state) => state.auth);
+  const { logout } = useLogout();
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => setMenuOpen((prev) => !prev);
@@ -65,27 +68,41 @@ const Navbar = () => {
           </Link>
 
           {/* Login */}
-          <Link
-            to="/login"
-            className="text-sm font-medium text-stone-800 border border-stone-200 px-5 py-2 rounded hover:border-stone-900 transition-colors duration-200"
-          >
-            Login
-          </Link>
-
-          {/* Register */}
-          <Link
-            to="/register"
-            className="text-sm font-medium text-stone-50 bg-stone-900 px-5 py-2 rounded hover:bg-amber-700 transition-colors duration-200"
-          >
-            Register
-          </Link>
+          {token ? (
+            <>
+              <Link to="/profile" className="text-sm font-medium text-zinc-600">
+                {user?.username}
+              </Link>
+              <button
+                onClick={logout}
+                className="text-sm font-medium text-stone-800 border border-stone-200 px-5 py-2 rounded hover:border-stone-900 transition-colors duration-200 cursor-pointer"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className="text-sm font-medium text-stone-800 border border-stone-200 px-5 py-2 rounded hover:border-stone-900 transition-colors duration-200"
+              >
+                Login
+              </Link>
+              <Link
+                to="/register"
+                className="text-sm font-medium text-stone-50 bg-stone-900 px-5 py-2 rounded hover:bg-amber-700 transition-colors duration-200"
+              >
+                Register
+              </Link>
+            </>
+          )}
         </div>
 
         {/* Hamburger */}
         <button
           onClick={toggleMenu}
           aria-label="Toggle menu"
-          className="md:hidden ml-auto flex flex-col gap-1.25 p-1"
+          className="md:hidden ml-auto flex flex-col gap-1.25 p-1 cursor-pointer"
         >
           <span
             className={`block w-6 h-[1.5px] bg-stone-900 transition-all duration-300 ${
@@ -123,39 +140,59 @@ const Navbar = () => {
           >
             Home
           </NavLink>
-          <NavLink
-            to="/cart"
-            onClick={closeMenu}
-            className={({ isActive }) =>
-              `text-sm tracking-wide ${
-                isActive ? "text-stone-900 font-medium" : "text-stone-500"
-              }`
-            }
-          >
-            Cart
-          </NavLink>
-          <NavLink
-            to="/login"
-            onClick={closeMenu}
-            className={({ isActive }) =>
-              `text-sm tracking-wide ${
-                isActive ? "text-stone-900 font-medium" : "text-stone-500"
-              }`
-            }
-          >
-            Login
-          </NavLink>
-          <NavLink
-            to="/register"
-            onClick={closeMenu}
-            className={({ isActive }) =>
-              `text-sm tracking-wide ${
-                isActive ? "text-stone-900 font-medium" : "text-stone-500"
-              }`
-            }
-          >
-            Register
-          </NavLink>
+          {token ? (
+            <NavLink
+              to="/cart"
+              onClick={closeMenu}
+              className={({ isActive }) =>
+                `text-sm tracking-wide ${
+                  isActive ? "text-stone-900 font-medium" : "text-stone-500"
+                }`
+              }
+            >
+              Cart
+            </NavLink>
+          ) : (
+            ""
+          )}
+          {token ? (
+            <>
+              <Link to="/profile" className="text-sm font-medium text-zinc-600">
+                {user?.username}
+              </Link>
+              <button
+                onClick={logout}
+                className="text-sm font-medium text-stone-800 border border-stone-200 px-5 py-2 rounded hover:border-stone-900 transition-colors duration-200 cursor-pointer"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <NavLink
+                to="/login"
+                onClick={closeMenu}
+                className={({ isActive }) =>
+                  `text-sm tracking-wide ${
+                    isActive ? "text-stone-900 font-medium" : "text-stone-500"
+                  }`
+                }
+              >
+                Login
+              </NavLink>
+              <NavLink
+                to="/register"
+                onClick={closeMenu}
+                className={({ isActive }) =>
+                  `text-sm tracking-wide ${
+                    isActive ? "text-stone-900 font-medium" : "text-stone-500"
+                  }`
+                }
+              >
+                Register
+              </NavLink>
+            </>
+          )}
         </nav>
       </div>
     </header>
