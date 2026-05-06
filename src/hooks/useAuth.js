@@ -3,6 +3,7 @@ import { loginUser } from "../api/authApi";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login, logout as logoutAction } from "../store/slices/authSlice";
+import { setNotification } from "../store/slices/uiSlice";
 
 export const useLogin = () => {
   const navigate = useNavigate();
@@ -14,6 +15,12 @@ export const useLogin = () => {
         login({
           token: data.token,
           user: { username: variables.username },
+        }),
+      );
+      dispatch(
+        setNotification({
+          message: `Welcome back, ${variables.username}!`,
+          type: "success",
         }),
       );
       navigate("/");
