@@ -40,7 +40,7 @@ function CartContent() {
         <div className="flex items-center gap-2 text-sm text-zinc-400">
           <button
             onClick={() => navigate("/")}
-            className="hover:text-zinc-700 transition-colors flex items-center gap-1"
+            className="hover:text-zinc-700 transition-colors flex items-center gap-1 cursor-pointer"
           >
             <ArrowLeft size={14} />
             Home
@@ -60,7 +60,7 @@ function CartContent() {
           </h1>
           <button
             onClick={() => dispatch(clearCart())}
-            className="text-xs text-zinc-400 hover:text-red-500 transition-colors flex items-center gap-1"
+            className="text-xs text-zinc-400 hover:text-red-500 transition-colors flex items-center gap-1 cursor-pointer"
           >
             <Trash2 size={13} />
             Clear Cart
@@ -109,9 +109,9 @@ function CartContent() {
 
             <button
               onClick={() => navigate("/")}
-              className="text-xs text-zinc-400 hover:text-zinc-700 transition-colors text-center flex items-center justify-center gap-1"
+              className="text-xs text-zinc-400 hover:text-zinc-700 transition-colors text-center flex items-center justify-center gap-1 cursor-pointer"
             >
-              <ArrowLeft size={12} />
+              <ArrowLeft size={12} className="cursor-pointer" />
               Continue Shopping
             </button>
           </div>
