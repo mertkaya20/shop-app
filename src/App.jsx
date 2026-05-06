@@ -10,24 +10,35 @@ import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import Login from "./pages/Login";
 import ProtectedRoute from "./components/layout/ProtectedRoute";
+import PublicRoute from "./components/layout/PublicRoute";
+import Notification from "./components/ui/Notification";
+import OrderSuccess from "./pages/OrderSuccess";
+import Profile from "./pages/Profile";
 
 const App = () => {
   return (
     <>
       <Navbar />
+      <Notification />
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          {/* <Route
-            path="/cart"
+          <Route
+            path="/register"
             element={
-              <ProtectedRoute>
-                <Cart />
-              </ProtectedRoute>
+              <PublicRoute>
+                <Register />
+              </PublicRoute>
             }
-          /> */}
+          />
+          <Route
+            path="/login"
+            element={
+              <PublicRoute>
+                <Login />
+              </PublicRoute>
+            }
+          />
           <Route path="/cart" element={<Cart />} />
           <Route
             path="/checkout"
@@ -37,7 +48,16 @@ const App = () => {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/detail/:id" element={<ProductDetail />} />
+          <Route path="/order-success" element={<OrderSuccess />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
