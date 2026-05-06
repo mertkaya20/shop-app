@@ -43,29 +43,31 @@ const Navbar = () => {
         {/* Desktop Actions */}
         <div className="hidden md:flex items-center gap-4">
           {/* Cart Icon */}
-          <Link
-            to="/cart"
-            className="relative text-stone-800 hover:text-amber-600 transition-colors duration-200"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="22"
-              height="22"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+          {token ? (
+            <Link
+              to="/cart"
+              className="relative text-stone-800 hover:text-amber-600 transition-colors duration-200"
             >
-              <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <path d="M16 10a4 4 0 0 1-8 0" />
-            </svg>
-            <span className="absolute -top-2 -right-2 bg-amber-600 text-white text-[10px] font-medium w-4.5 h-4.5 rounded-full flex items-center justify-center">
-              {totalQuantity}
-            </span>
-          </Link>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <path d="M16 10a4 4 0 0 1-8 0" />
+              </svg>
+              <span className="absolute -top-2 -right-2 bg-amber-600 text-white text-[10px] font-medium w-4.5 h-4.5 rounded-full flex items-center justify-center">
+                {totalQuantity}
+              </span>
+            </Link>
+          ) : null}
 
           {/* Login */}
           {token ? (
@@ -152,9 +154,7 @@ const Navbar = () => {
             >
               Cart
             </NavLink>
-          ) : (
-            ""
-          )}
+          ) : null}
           {token ? (
             <>
               <Link to="/profile" className="text-sm font-medium text-zinc-600">
