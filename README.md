@@ -75,7 +75,6 @@ src/
 │   ├── useProducts.js       → useQuery ile ürün hook'ları
 │   ├── useAuth.js           → useMutation ile login/logout
 │   ├── useCart.js           → Redux cart action'larını sarar
-│   └── useLocalStorage.js   → Generic localStorage hook
 │
 ├── store/            # Redux Toolkit store
 │   └── slices/
